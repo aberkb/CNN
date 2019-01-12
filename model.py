@@ -25,7 +25,7 @@ img = img.reshape(64,64)
 X = X.values.reshape(-1,64,64,1)
 Y = Y.values
 Y = to_categorical(Y)
-x_train, x_test, y_train, y_test = train_test_split(X, Y, test_size = 0.3, random_state=42)
+x_train, x_test, y_train, y_test = train_test_split(X, Y, test_size = 0.3, random_state=151)
 
 model = Sequential()
 
@@ -33,18 +33,23 @@ model.add(Conv2D(filters = 128, kernel_size = (5,5),padding = 'same',activation 
 model.add(MaxPool2D(pool_size=(2,2)))
 model.add(Dropout(0.20))
 
-model.add(Conv2D(filters = 64, kernel_size = (3,3),padding = 'same',activation ='relu'))
+model.add(Conv2D(filters = 128, kernel_size = (3,3),padding = 'same',activation ='relu'))
 model.add(MaxPool2D(pool_size=(2,2)))
 model.add(Dropout(0.20))
 
-model.add(Conv2D(filters = 64, kernel_size = (3,3),padding = 'same',activation ='relu'))
+model.add(Conv2D(filters = 64, kernel_size = (3,3),activation ='relu'))
+model.add(MaxPool2D(pool_size=(2,2)))
+model.add(Dropout(0.20))
+
+model.add(Conv2D(filters = 32, kernel_size = (3,3),activation ='relu'))
 model.add(MaxPool2D(pool_size=(2,2)))
 model.add(Dropout(0.20))
 
 model.add(Flatten())
 
 model.add(Dense(256,activation = "relu"))          
-model.add(Dense(64,activation = "relu"))
+model.add(Dense(128,activation = "relu"))
+model.add(Dense(128,activation = "relu"))
 model.add(Dense(32,activation = "relu"))
 
 model.add(Dense(9, activation = "softmax"))
@@ -62,7 +67,7 @@ datagen = ImageDataGenerator(
 datagen.fit(x_train)
 
 model.fit_generator(datagen.flow(x_train,y_train, batch_size=200),
-                              epochs = 20, validation_data = (x_test,y_test), steps_per_epoch=500)
+                              epochs = 50, validation_data = (x_test,y_test), steps_per_epoch=200)
 
 Y_pred = model.predict(x_test)
 Y_pred_classes = np.argmax(Y_pred,axis = 1) 
