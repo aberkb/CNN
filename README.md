@@ -1,4 +1,6 @@
 # Classification of Colorectal pathology images using CNN
+#### Readings for Convolutional Neural Networks  1- Great Explanation from [karpathy from stanford](http://cs231n.github.io/convolutional-networks/). 2(video)- From [Yann LeCun](https://www.youtube.com/watch?v=U2mhZ9E8Fk8)  3- from [Daphne Cornelisse](https://medium.freecodecamp.org/an-intuitive-guide-to-convolutional-neural-networks-260c2de0a050) 
+
 ##### Pathology is known as the science of the causes and effects of diseases. In particular, it is a branch of medicine that deals with the examination of samples of body tissue in the laboratory for diagnostic or forensic purposes. Hematoxylin is stained with eosin (H & E) in order to make it more visually meaningful.
 ##### The convolutional neural network, which is frequently used to classify colorectal histapatology images, was used on dataset which contains equal number of elements with 8 different classes. Tumor, stroma, complex, lympho, debris, mucosa. 
 
